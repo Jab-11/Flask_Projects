@@ -8,22 +8,24 @@
     <title>Guess the number</title>
 </head>
 <body>
-    {% include 'navbar.html' %}
-    <!-- {% include 'side.html' %} -->
+    <!-- {% include 'navbar.html' %} -->
+    
     <div class="container text-center border border-black rounded-4 mt-4" style="width: 800px; height: 300px; background-color:#720017; color:#d9ac2a">
 
         <h1 class="mb-5 mt-5 fs-2">"Guess the number !!"</h1>
         <div class="mb-3">
-          <span class="fs-4"> Select the range : </span>
-          <select name="range" id="range" style="background-color:#752333; color:#d8d583">
-              <option value="r10">1-10</option>
-              <option value="r100">1-100</option>
-              <option value="r1000">1-1000</option>
-          </select>
-        </div>
-        <br>
-        <button class="mb-5" style="background-color:#752333; color:#d8d583" id="Go">Go!!</button>
-        
+          
+          <form action="/game" method="POST">
+            <div class="mb-5">
+            <span class="fs-4"> Select the range : </span>
+              <select name="range" id="range" style="background-color:#752333; color:#d8d583">
+                  <option value="r10">1-10</option>
+                  <option value="r100">1-100</option>
+                  <option value="r1000">1-1000</option>
+              </select>
+            </div>
+              <button class="mb-5" style="background-color:#752333; color:#d8d583" type="submit">Go!!</button>
+          </form>
     </div>
 </body>
 </html>
