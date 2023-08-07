@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -26,5 +28,7 @@ def check_guess():
 
     return render_template('guess.html', range_value=range_value, target_number=target_number, feedback=feedback)
   
+
+
 if __name__=="__main__":
   app.run(host='0.0.0.0',debug=True)
