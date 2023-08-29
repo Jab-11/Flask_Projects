@@ -41,7 +41,7 @@ class Done(db.Model):
     
     
 @app.route('/', methods=["GET","POST"])
-def hello_world():
+def home():
     if request.method =="POST":
         title = request.form['todo']
         date_str = request.form['date']
