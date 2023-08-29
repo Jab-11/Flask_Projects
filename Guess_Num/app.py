@@ -12,27 +12,35 @@ def home():
 
 @app.route('/game', methods=['POST'])
 def start_game():
-    range_value = request.form['range']
-    return render_template('guess.html', range_value=range_value)
-
-
-
-@app.route('/guess', methods=['GET','POST'])
-def check_guess():
-    range_value = int(request.form['range_value'])
+    global range_value, target_number
+    
+    range_value = int(request.form['range'])
     target_number = randint(1, range_value)
-    user_guess = int(request.form['guess'])
-    feedback = ""
+    return render_template('guess.html')
 
-    if user_guess < target_number:
-        feedback = "Guessed too low!"
-    elif user_guess > target_number:
-        feedback = "Guessed too high!"
-    else:
-        feedback = "Congratulations! You guessed correctly."
 
-    return render_template('guess.html', range_value=range_value, target_number=target_number, feedback=feedback)
-  
+
+@app.route('/gamestart', methods=['GET','POST'])
+def check_guess():
+    global feedback
+    feedback = " "
+    # print(target_number)
+    if request.method=='POST':
+        # user_guess = int(request.form['guess'])
+        user_guess = int(request.form.get("guess"))
+        # user_guess = int(user_guess)
+        feedback = ""
+        # print(target_number)
+        # print(user_guess)
+        # print(feedback)
+        if user_guess < target_number:
+            feedback = f"{user_guess} is low!"
+        elif user_guess > target_number:
+            feedback = f"{user_guess} is high!"
+        else:
+            feedback = "Congratulations! You guessed correctly."
+    return render_template('guess.html', feedback=feedback)
+
 
 
 if __name__=="__main__":
